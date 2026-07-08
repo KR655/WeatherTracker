@@ -1,0 +1,52 @@
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+
+# Virtual Environment
+venv/
+django_api/venv/
+
+# Environment Variables
+.env
+django_api/.env
+
+# ===============================
+# Node
+# ===============================
+weather-frontend/node_modules/
+weather-frontend/dist/
+npm-debug.log*
+
+# ===============================
+# VS Code
+# ===============================
+.vscode/
+
+# ===============================
+# Docker
+# ===============================
+postgres_data/
+
+# ===============================
+# OS Files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Python Cache
+# ===============================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ===============================
+# Misc
+# ===============================
+.idea/
+*.env
+.env.*

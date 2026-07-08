@@ -1,0 +1,84 @@
+services:
+
+  postgres:
+    image: postgres:16
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: weatherdb
+      POSTGRES_USER: weatheruser
+      POSTGRES_PASSWORD: weatherpass
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+
+    restart: always
+
+  backend:
+    build: ./django_api
+    env_file:
+      - ./django_api/.env
+
+    volumes:
+      - ./django_api:/app
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - postgres
+      - redis
+
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build: ./weather-frontend
+
+    volumes:
+      - ./weather-frontend:/app
+      - /app/node_modules
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+    command: sh -c "npm install && npm run dev -- --host"
+
+  celery:
+    build: ./django_api
+    env_file:
+      - ./django_api/.env
+
+    command: celery -A core worker --pool=solo -l info
+
+    volumes:
+      - ./django_api:/app
+
+    depends_on:
+      - redis
+      - backend
+
+  celery-beat:
+    build: ./django_api
+    env_file:
+      - ./django_api/.env
+
+    command: celery -A core beat -l info
+
+    volumes:
+      - ./django_api:/app
+
+    depends_on:
+      - redis
+      - backend
+  
+
+volumes:
+  postgres_data:
