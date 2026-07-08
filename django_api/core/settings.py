@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 from datetime import timedelta
-
+import redis
 from pathlib import Path
 from decouple import config
 WEATHER_API_KEY = config("WEATHER_API_KEY")
