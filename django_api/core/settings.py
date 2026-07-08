@@ -180,18 +180,21 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "REST API for fetching and managing live weather data.",
     "VERSION": "1.0.0",
 }
-REDIS_HOST = config("REDIS_HOST", default="redis")
-REDIS_PORT = config("REDIS_PORT", default=6379, cast=int)
-REDIS_DB = config("REDIS_DB", default=0, cast=int)
-CACHE_TIMEOUT = 300    
+REDIS_URL = config(
+    "REDIS_URL",
+    default="redis://localhost:6379/0"
+)
+
+CACHE_TIMEOUT = 300
+
 CELERY_BROKER_URL = config(
     "CELERY_BROKER_URL",
-    default="redis://redis:6379/0"
+    default=REDIS_URL,
 )
 
 CELERY_RESULT_BACKEND = config(
     "CELERY_RESULT_BACKEND",
-    default="redis://redis:6379/0"
+    default=REDIS_URL,
 )
 CELERY_ACCEPT_CONTENT = ["json"]
 
