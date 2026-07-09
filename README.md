@@ -147,7 +147,7 @@ WeatherTracker
 Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/WeatherTracker.git
+https://github.com/KR655/WeatherTracker.git
 ```
 
 Move into the project
