@@ -19,7 +19,16 @@ function Analytics() {
 
     }, []);
 
-    if (!stats) return <h2>Loading...</h2>;
+    if (!stats) {
+        return (
+            <div className="min-h-screen bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
+                <Navbar />
+                <div className="flex items-center justify-center h-[80vh]">
+                    <h2 className="text-2xl font-semibold">Loading Analytics...</h2>
+                </div>
+            </div>
+        );
+    }
 
     return (
 
@@ -29,7 +38,7 @@ function Analytics() {
 
             <div className="max-w-6xl mx-auto px-6 py-6">
 
-                <h1 className="text-4xl font-bold mb-8 dark:text-white">
+                <h1 className="text-4xl font-bold mb-8 text-slate-900 dark:text-white">
 
                     📊 Analytics
 
@@ -43,7 +52,7 @@ function Analytics() {
                             Total Searches
                         </h2>
 
-                        <h1 className="text-4xl font-bold text-black dark:text-white">
+                        <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
 
                             {stats.total_searches}
 
@@ -57,7 +66,7 @@ function Analytics() {
                             Favorites
                         </h2>
 
-                        <h1 className="text-4xl font-bold text-black dark:text-white">
+                        <h1 className="text-4xl font-bold text-slate-900 dark:text-white">
 
                             {stats.favorites}
 
@@ -69,7 +78,7 @@ function Analytics() {
 
                         <h2 className="text-gray-500 dark:text-gray-300">Alerts</h2>
 
-                        <h1 className="text-4xl font-bold text-black dark:text-white">
+                        <h1 className="text-4xl font-bold text-slate-900 dark:text-whitee">
 
                             {stats.alerts}
 
